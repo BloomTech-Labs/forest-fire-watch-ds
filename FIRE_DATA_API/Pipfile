@@ -9,6 +9,9 @@ verify_ssl = true
 pandas = "*"
 numpy = "*"
 schedule = "*"
+flask = "*"
+flask-restful = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.7"

@@ -1,8 +1,13 @@
 """
-Module to pull fire data from the MODUS project for use in BURN NOTICE
+Module to pull fire data from the MODUS project for use in Fire Flight
 """
 
-#Imports
+# Flask App Imports
+from flask import Flask, jsonify
+from flask_restful import Resource, Api
+from json import dumps
+
+# DS Logic imports
 import pandas as pd
 import numpy as np
 from math import radians, cos, sin, asin, sqrt
@@ -12,6 +17,8 @@ import time, schedule
 # https://earthdata.nasa.gov/earth-observation-data/near-real-time/firms
 # website home for modis and viirs data
 
+app = Flask(__name__)
+api = Api(app)
 
 modis_url = 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/c6/csv/MODIS_C6_USA_contiguous_and_Hawaii_24h.csv'
 
@@ -51,7 +58,10 @@ def haversine(lon1, lat1, lon2, lat2):
     r = 3956 #radius of earth in miles mean of  poles and equator radius
     return c * r
 
+
+@app.route('fire_data/api/check_fires', methods=['GET'])
 def check_fires(user_coords, fire_cords, perimiter=50):
+
     """
     checks a single user long/lat tuple against an array of long/lat fire coordinates
     and returns a dict of fires within the perimiter and a binary Alert: yes/no
@@ -81,8 +91,8 @@ def check_fires(user_coords, fire_cords, perimiter=50):
         else:
             pass
     
-    return results
+    return jsonify(results)
 
 # Start process
 if __name__ == '__main__':
-    main()
+    app.run(debug=True)
