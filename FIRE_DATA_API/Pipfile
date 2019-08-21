@@ -8,11 +8,12 @@ verify_ssl = true
 [packages]
 pandas = "*"
 numpy = "*"
-schedule = "*"
 flask = "*"
 flask-restful = "*"
 python-dotenv = "*"
 apscheduler = "*"
+gunicorn = "*"
+requests = "*"
 
 [requires]
 python_version = "3.7"
