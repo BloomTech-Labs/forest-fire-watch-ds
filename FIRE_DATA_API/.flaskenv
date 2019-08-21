@@ -1,1 +1,2 @@
-FLASK_APP=fire_data.py
+FLASK_APP=app.py
+FLASK_ENV=development

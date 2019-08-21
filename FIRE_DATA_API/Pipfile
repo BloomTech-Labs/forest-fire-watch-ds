@@ -12,6 +12,7 @@ schedule = "*"
 flask = "*"
 flask-restful = "*"
 python-dotenv = "*"
+apscheduler = "*"
 
 [requires]
 python_version = "3.7"
