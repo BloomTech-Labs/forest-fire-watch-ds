@@ -14,8 +14,12 @@ from json import dumps
 import pandas as pd
 import numpy as np
 from math import radians, cos, sin, asin, sqrt
-from apscheduler.schedulers.blocking import BlockingScheduler
 from pandas.util.testing import assert_frame_equal
+
+# Different schedulers for querying data
+from apscheduler.schedulers.background import BackgroundScheduler
+# import schedule, time
+
 
 # data source
 # https://earthdata.nasa.gov/earth-observation-data/near-real-time/firms
@@ -111,7 +115,7 @@ def pull_modus(url = modis_url):
 #defines our first df from memory
 df = pd.read_csv('modus_df', sep=',')
     
-def check_new_df(df=df):
+def check_new_df(df):
     """
     Pulls a new df from modus and compares it to the live df
     """
@@ -126,23 +130,30 @@ def check_new_df(df=df):
         return df
         
     except:
-        return 'Modus URL not reachable'
+        pass # 'Modus URL not reachable'
 
 
-# TODO this scheduler is not working so this is a beta build, data is not live
-# but it is callable
 
-# # pulls a new df every hour
-# scheduler = BlockingScheduler()
-# scheduler.add_job(check_new_df, 'interval', hours=1)
-# scheduler.start()
+# pulls a new df every hour
+def check_modus_data():
+    df = check_new_df(df)
 
-# check our df status
+scheduler = BackgroundScheduler()
+scheduler.add_job(check_modus_data, 'interval', hours=1)
+scheduler.start()
+
+# check our df size
 @app.route('/data/size', methods=['GET'])
 def df_size():
     size = df.shape
     return jsonify({'df_size' : size}), 201
 
+# check our df head
+@app.route('/data/head', methods=['GET'])
+def df_head():
+    head = df.head().to_json()
+    return jsonify({'df_head' : head}), 201
+
 # Start process
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5000')
+    app.run()
