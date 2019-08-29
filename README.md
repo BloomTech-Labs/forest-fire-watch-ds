@@ -5,21 +5,11 @@
 🚫 Each student has a required minimum number of meaningful PRs each week per the rubric.  Contributing to docs does NOT count as a PR to meet your weekly requirements.
 
 # FireFlight
-You can find the project at [FireFlightApp.com](https://fireflightapp.com/).
+You can find the project at [FireFlightApp.com](https://www.fireflightapp.com/).
 
 ## 5️⃣ Contributors
 
 🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
-
-[Liv Johnson](https://github.com/livjab)
-[<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />]
-[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/livjab)
-[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/liv-johnson-015523144/) 
-
-[Ned Horsey](https://github.com/Rice-from-data)                                        
-[<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />]
-[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Rice-from-data)       
-[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/edmond-horsey/)
 
 |                                       [Ned Horsey](https://github.com/Rice-from-data)                                        |                                       [Liv Johnson](https://github.com/livjab)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
@@ -74,8 +64,8 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 🚫  Add to or delete souce links as needed for your project
 
 
--   [US Wildfires] (https://www.kaggle.com/rtatman/188-million-us-wildfires)
--   [NASA Satellite FIRMS Data] (https://firms.modaps.eosdis.nasa.gov/active_fire/#firms-txt)
+-   [US Wildfires](https://www.kaggle.com/rtatman/188-million-us-wildfires)
+-   [NASA Satellite FIRMS Data](https://firms.modaps.eosdis.nasa.gov/active_fire/#firms-txt)
 -   [Source 3] (🚫add link to python notebook here)
 -   [Source 4] (🚫add link to python notebook here)
 -   [Source 5] (🚫add link to python notebook here)
