@@ -5,25 +5,28 @@
 🚫 Each student has a required minimum number of meaningful PRs each week per the rubric.  Contributing to docs does NOT count as a PR to meet your weekly requirements.
 
 # FireFlight
-You can find the project at [🚫URL NAME GOES HERE](https://fireflight.netlify.com/).
+You can find the project at [FireFlightApp.com](https://fireflightapp.com/).
 
 ## 5️⃣ Contributors
 
 🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
 
-|                                       [Liv Johnson](https://github.com/livjab)                                        |                                       [Ned Horsey](https://github.com/Rice-from-data)                                        
-| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                                            |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
+[Liv Johnson](https://github.com/livjab)
+[<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />]
+[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/livjab)
+[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/liv-johnson-015523144/) 
 
+[Ned Horsey](https://github.com/Rice-from-data)                                        
+[<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />]
+[<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Rice-from-data)       
+[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/edmond-horsey/)
 
 
 🚫 5️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](netlify link goes in these parenthesis)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](https://fireflight.netlify.com/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 🚫 more info on using badges [here](https://github.com/badges/shields)
@@ -43,7 +46,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 
 🚫  delete if front end is not applicable to your project
 
-1️⃣ [Deployed Front End](🚫add link to deployed app here)
+1️⃣ [Deployed Front End](https://fireflight.netlify.com/)
 
 ### Tech Stack
 
@@ -65,8 +68,8 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 🚫  Add to or delete souce links as needed for your project
 
 
--   [Source 1] (https://www.kaggle.com/rtatman/188-million-us-wildfires)
--   [Source 2] (https://firms.modaps.eosdis.nasa.gov/active_fire/#firms-txt)
+-   [US Wildfires] (https://www.kaggle.com/rtatman/188-million-us-wildfires)
+-   [NASA Satellite FIRMS Data] (https://firms.modaps.eosdis.nasa.gov/active_fire/#firms-txt)
 -   [Source 3] (🚫add link to python notebook here)
 -   [Source 4] (🚫add link to python notebook here)
 -   [Source 5] (🚫add link to python notebook here)
@@ -127,6 +130,6 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](_link to your backend readme here_) for details on the backend of our project.
+See [Backend Documentation](https://github.com/labs15-forest-fire/backend) for details on the backend of our project.
 
-See [Front End Documentation](_link to your front end readme here_) for details on the front end of our project.
+See [Front End Documentation](https://github.com/labs15-forest-fire/frontend) for details on the front end of our project.
