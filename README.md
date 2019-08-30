@@ -7,15 +7,15 @@
 # FireFlight
 You can find the project at [FireFlightApp.com](https://www.fireflightapp.com/).
 
-## 5️⃣ Contributors
+## Contributors
 
 🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
 
-|                                       [Ned Horsey](https://github.com/Rice-from-data)                                        |                                       [Liv Johnson](https://github.com/livjab)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
-| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
+|                                       [Ned Horsey](https://github.com/Rice-from-data)                                        |                                       [Liv Johnson](https://github.com/livjab)                                        |                                       [](https://github.com/)                                        |
+| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
 |                      [<img src="https://avatars1.githubusercontent.com/u/44828872?s=460&v=4" width = "200" />](https://github.com/Rice-from-data)                       |                      [<img src="https://avatars2.githubusercontent.com/u/23245487?s=460&v=4" width = "200" />](https://github.com/livjab)                       |                                             |                                             |                                             |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Rice-from-data)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/livjab)             |                       |                     |                         |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](www.linkedin.com/in/edmond-horsey) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/liv-johnson-015523144/) |  |  |  |
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Rice-from-data)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/livjab)             |                         |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](www.linkedin.com/in/edmond-horsey) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/liv-johnson-015523144/) |  |
 
 
 🚫 5️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
@@ -61,7 +61,6 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 -   Explanatory Variable 5
 
 ### Data Sources
-🚫  Add to or delete souce links as needed for your project
 
 
 -   [US Wildfires](https://www.kaggle.com/rtatman/188-million-us-wildfires)
