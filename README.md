@@ -1,15 +1,9 @@
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline. Feel free to add your own flare to it.
-
 🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
-
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric.  Contributing to docs does NOT count as a PR to meet your weekly requirements.
 
 # FireFlight
 You can find the project at [FireFlightApp.com](https://www.fireflightapp.com/).
 
 ## Contributors
-
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
 
 |                                       [Ned Horsey](https://github.com/Rice-from-data)                                        |                                       [Liv Johnson](https://github.com/livjab)                                        |                                       [](https://github.com/)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
@@ -18,39 +12,37 @@ You can find the project at [FireFlightApp.com](https://www.fireflightapp.com/).
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](www.linkedin.com/in/edmond-horsey) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/liv-johnson-015523144/) |  |
 
 
-🚫 5️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
-
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
-![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
+[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](https://fireflight.netlify.com/)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-
-🚫 more info on using badges [here](https://github.com/badges/shields)
 
 ## Project Overview
 
+[Trello Board](https://trello.com/b/LHd7GbuL/labs15-forest-fire)
 
-1️⃣ [Trello Board](https://trello.com/b/LHd7GbuL/labs15-forest-fire)
+[Product Canvas](https://www.notion.so/dd55f670427b40f7bc0503e36ad58ea9?v=d4cc255c2ad341a1b2ccd03f0d8d86f9)
 
-1️⃣ [Product Canvas](https://www.notion.so/dd55f670427b40f7bc0503e36ad58ea9?v=d4cc255c2ad341a1b2ccd03f0d8d86f9)
+### Problem
+ - People aren't being properly alerted of potential danger.
+ - There is not enough awareness of the long lasting effects of wildfires and the potential danger to my area.
+ - People aren't prepared for evacuation when the time comes to do so.
+ 
+ ### Objectives
+ 
+ - Provide danger alerts to those in danger areas
+ - Provide an increasingly accurate list of places that show what is most likely to be the next location of wildfires.**
+ - Continuously add data sources to help better predict the movement of wild fires.**
+ - Enable users to create quick and easy-to-access "Emergency Response" checklists that help them remember critical items and steps in the event of an evacuation
 
-🚫 Replace lorem ipsum with a description of your project
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-🚫  delete if front end is not applicable to your project
-
-1️⃣ [Deployed Front End](https://fireflight.netlify.com/)
+[Deployed Front End](https://fireflight.netlify.com/)
 
 ### Tech Stack
 
-🚫 List all of the languages, frameworks, services, etc used here.
+SQL, Python, Pandas, Scikit-learn, Flask
 
-### 2️⃣ Predictions
+### Predictions
 
-🚫 Describe your models here
+A model has been created using historic NASA satellite data, matched by date and location to known wildfires within the US. We are using this labled data in conjunction with NASA's current active fire data to predict likely wildire locations. 
 
 ### 2️⃣ Explanatory Variables
 
