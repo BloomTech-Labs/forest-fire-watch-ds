@@ -60,8 +60,8 @@ A model has been created using historic NASA satellite data, matched by date and
 -   [US Wildfires](https://www.kaggle.com/rtatman/188-million-us-wildfires)
 -   [NASA Satellite FIRMS Data](https://firms.modaps.eosdis.nasa.gov/active_fire/#firms-txt)
 -   [MCD14DL](https://earthdata.nasa.gov/earth-observation-data/near-real-time/firms/c6-mcd14dl#ed-firms-attributes)
--   [Source 4] (🚫add link to python notebook here)
--   [Source 5] (🚫add link to python notebook here)
+-   [Federal Fire Occurrence Website](https://wildfire.cr.usgs.gov/firehistory)
+-   [NOAA GLOBAL HISTORICAL CLIMATOLOGY NETWORK](ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/)
 
 ### Python Notebooks
 
