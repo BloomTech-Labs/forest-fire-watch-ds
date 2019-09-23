@@ -75,11 +75,21 @@ A model has been created using historic NASA satellite data, matched by date and
 
 ### 3️⃣ How to connect to the web API
 
-🚫 List directions on how to connect to the API here
+- The data API is hosted at: [Fire Data Api](https://fire-data-api.herokuapp.com/)
+- To request a list of fires within your specified perimiter, POST  a json to https://fire-data-api.herokuapp.com/check_fires with the format: 
 
-### 3️⃣ How to connect to the data API
+```
+{
+	"user_coords" : [LONG(float), LAT(float)],
+	"distance" : MILES(INT)
+}
+```
+The "distance" field determines the radius of your fire perimiter.
 
-🚫 List directions on how to connect to the API here
+- To request a list of ALL fires in the United States, send a GET request https://fire-data-api.herokuapp.com/all_fires 
+
+[comment]: <> (# 3️⃣ How to connect to the data API)
+[comment]: <> ( 🚫 List directions on how to connect to the API here)
 
 ## Contributing
 
