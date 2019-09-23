@@ -61,7 +61,7 @@ A model has been created using historic NASA satellite data, matched by date and
 -   [NASA Satellite FIRMS Data](https://firms.modaps.eosdis.nasa.gov/active_fire/#firms-txt)
 -   [MCD14DL](https://earthdata.nasa.gov/earth-observation-data/near-real-time/firms/c6-mcd14dl#ed-firms-attributes)
 -   [Federal Fire Occurrence Website](https://wildfire.cr.usgs.gov/firehistory)
--   [NOAA GLOBAL HISTORICAL CLIMATOLOGY NETWORK](ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/)
+-   [NOAA GLOBAL HISTORICAL CLIMATOLOGY NETWORK](https://www.ncdc.noaa.gov/data-access/land-based-station-data/land-based-datasets/global-historical-climatology-network-monthly-version-4)
 
 ### Python Notebooks
 
