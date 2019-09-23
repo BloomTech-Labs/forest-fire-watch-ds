@@ -1,5 +1,3 @@
-🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
-
 # FireFlight
 You can find the project at [FireFlightApp.com](https://www.fireflightapp.com/).
 
@@ -23,41 +21,45 @@ You can find the project at [FireFlightApp.com](https://www.fireflightapp.com/).
 [Product Canvas](https://www.notion.so/dd55f670427b40f7bc0503e36ad58ea9?v=d4cc255c2ad341a1b2ccd03f0d8d86f9)
 
 ### Problem
- - People aren't being properly alerted of potential danger.
- - There is not enough awareness of the long lasting effects of wildfires and the potential danger to my area.
- - People aren't prepared for evacuation when the time comes to do so.
+ - It's hard to be aware of wildfires in your area because all data is compiled for government use.
+ - Local alerts for wildfires can fail in emergencies.
+ - If you aren't generally aware of wildfire risk, you won't be ready in a disaster situation.
  
- ### Objectives
+### Objectives
  
- - Provide danger alerts to those in danger areas
- - Provide an increasingly accurate list of places that show what is most likely to be the next location of wildfires.**
- - Continuously add data sources to help better predict the movement of wild fires.**
- - Enable users to create quick and easy-to-access "Emergency Response" checklists that help them remember critical items and steps in the event of an evacuation
-
+ - Provide an easy way to be aware of wildfires in your area.
+ 
 [Deployed Front End](https://fireflight.netlify.com/)
 
 ### Tech Stack
 
-SQL, Python, Pandas, Scikit-learn, Flask
+SQL, Python, Pandas, Scikit-learn, XGB, HDBSCAN, Flask
 
-### Predictions
+### Classification Model
 
-A model has been created using historic NASA satellite data, matched by date and location to known wildfires within the US. We are using this labled data in conjunction with NASA's current active fire data to predict likely wildire locations. 
+A model has been created using historic NASA satellite data, matched by date and location to known wildfires within the US. We are using this labled data in conjunction with NASA's current active fire data to correctly classify wildfires from live satellite image data. 
 
 ### 2️⃣ Explanatory Variables
 
--   Explanatory Variable 1
--   Explanatory Variable 2
--   Explanatory Variable 3
--   Explanatory Variable 4
--   Explanatory Variable 5
+-   Brightness - Brightness temperature 21 (Kelvin) 
+-   Scan - Along Scan pixel size 
+-   Track - Along Scan pixel size
+-   Acq_Date - Acquisition Date 
+-   Acq_Time  - Acquisition Time 
+-   Satellite -  	A = Aqua and T = Terra
+-   Confidence - Confidence (0-100%) 
+-   Bright_T31 - Brightness temperature 31 (Kelvin) 
+-   FRP - Fire Radiative Power (MW - megawatts) 
+-   DayNight  - Day or Night 
+-   Clusters - Binary Y/N if pixel is part of a clutser
+
 
 ### Data Sources
 
 
 -   [US Wildfires](https://www.kaggle.com/rtatman/188-million-us-wildfires)
 -   [NASA Satellite FIRMS Data](https://firms.modaps.eosdis.nasa.gov/active_fire/#firms-txt)
--   [Source 3] (🚫add link to python notebook here)
+-   [MCD14DL](https://earthdata.nasa.gov/earth-observation-data/near-real-time/firms/c6-mcd14dl#ed-firms-attributes)
 -   [Source 4] (🚫add link to python notebook here)
 -   [Source 5] (🚫add link to python notebook here)
 
