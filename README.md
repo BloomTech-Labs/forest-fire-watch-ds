@@ -65,13 +65,14 @@ A model has been created using historic NASA satellite data, matched by date and
 
 ### Python Notebooks
 
-🚫  Add to or delete python notebook links as needed for your project
 
-[Python Notebook 1](🚫add link to python notebook here)
+[Labelling Training Data and Exploration](https://github.com/labs15-forest-fire/Data-Science/blob/master/Labelling_Data/Labelling_Exploratory_Analysis_Training_Dataset.ipynb)
 
-[Python Notebook 2](🚫add link to python notebook here)
+[Baseline Model](https://github.com/labs15-forest-fire/Data-Science/blob/master/Baseline%20Model%20v2/DTC_Baseline_Model.ipynb)
 
-[Python Notebook 3](🚫add link to python notebook here)
+[Feature Engineering - Clustering](https://github.com/labs15-forest-fire/Data-Science/blob/master/Feature%20Engineering/Clustering/Binary_Clustering.ipynb)
+
+[Model Experiments and Tuning](https://github.com/labs15-forest-fire/Data-Science/blob/master/Fast%20Model%20Exploration%20v2/Model_Selection_Experiments_v2_clustering.ipynb)
 
 ### 3️⃣ How to connect to the web API
 
