@@ -39,7 +39,7 @@ SQL, Python, Pandas, Scikit-learn, XGB, HDBSCAN, Flask
 
 A model has been created using historic NASA satellite data, matched by date and location to known wildfires within the US. We are using this labled data in conjunction with NASA's current active fire data to correctly classify wildfires from live satellite image data. 
 
-### 2️⃣ Explanatory Variables
+### Explanatory Variables
 
 -   Brightness - Brightness temperature 21 (Kelvin) 
 -   Scan - Along Scan pixel size 
@@ -74,7 +74,7 @@ A model has been created using historic NASA satellite data, matched by date and
 
 [Model Experiments and Tuning](https://github.com/labs15-forest-fire/Data-Science/blob/master/Fast%20Model%20Exploration%20v2/Model_Selection_Experiments_v2_clustering.ipynb)
 
-### 3️⃣ How to connect to the web API
+### How to connect to the web API
 
 - The data API is hosted at: [Fire Data Api](https://fire-data-api.herokuapp.com/)
 - To request a list of fires within your specified perimiter, POST  a json to https://fire-data-api.herokuapp.com/check_fires with the format: 
