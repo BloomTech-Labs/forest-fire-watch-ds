@@ -90,11 +90,14 @@ def create_app():
 
         time_now = datetime.datetime.now()
         for key, item in values.items():
-            print(key, type(item))
+            print(key, type(item), item)
 
         if values["reset"] == 1 and values["password"] == 55689:
+            print('dropping db')
             db.drop_all()
+            print('db dropped')
             db.create_all()
+            print('db created')
 
             return jsonify(
                 {"error": False, "message": "db created successfully", "time": time_now}
