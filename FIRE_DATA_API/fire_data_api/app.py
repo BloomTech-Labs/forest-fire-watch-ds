@@ -53,7 +53,7 @@ def create_app():
 
     # connects resources to api endpoint
     api.add_resource(CheckFires, "/check_fires")
-    # api.add_resource(AllFires, "/all_fires")
+    api.add_resource(AllFires, "/all_fires")
 
     def make_predictions():
         """
