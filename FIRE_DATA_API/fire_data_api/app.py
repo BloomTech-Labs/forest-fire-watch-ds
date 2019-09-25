@@ -13,7 +13,7 @@ from json import dumps
 
 
 # local imports
-from .models import Fire, db, FrameHash
+from .models import db, Fire, FrameHash
 from .resources import CheckFires, AllFires
 from .datascience import (
     check_new_df,
@@ -166,6 +166,6 @@ def create_app():
     #     return jsonify({'df_head' : head}), 201
 
     # start the scheduler
-    start_scheduler()
+    # start_scheduler()
 
     return app
