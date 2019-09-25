@@ -131,7 +131,7 @@ def add_hash(df_hash):
     # print('timestamp: ', ts)
     # print('datatype: ', type(ts))
 
-    hash = FrameHash(hash=df_hash, timestamp=ts)
+    hash = FrameHash(hash=str(df_hash), timestamp=ts)
 
     db.session.add(hash)
     db.session.commit()
