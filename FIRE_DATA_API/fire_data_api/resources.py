@@ -27,7 +27,7 @@ class CheckFires(Resource):
             perimiter = 50
 
         # get all positive fire coords from our db that are not older than 5 days
-        time_limit = datetime.timedelta(days=5)
+        time_limit = datetime.timedelta(days=150)
         ts = datetime.datetime.now()
 
         fire_query = Fire.query.filter(
