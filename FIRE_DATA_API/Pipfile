@@ -19,6 +19,9 @@ scikit-learn = "==0.20.3"
 datetime = "*"
 psycopg2-binary = "*"
 xgboost = "*"
+bs4 = "*"
+lxml = "*"
+feedparser = {git = "https://github.com/ChanceDurr/feedparser"}
 
 [requires]
 python_version = "3.7"
