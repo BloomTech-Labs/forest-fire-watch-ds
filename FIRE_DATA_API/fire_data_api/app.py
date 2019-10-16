@@ -26,6 +26,9 @@ from .datascience import (
 from apscheduler.schedulers.background import BackgroundScheduler
 import datetime
 import os
+from bs4 import BeautifulSoup
+import re
+from urllib.request import urlopen
 
 
 def create_app():
@@ -110,6 +113,42 @@ def create_app():
                     "time": time_now,
                 }
             )
+
+    # grab RSS fires
+    @app.route("/rss_fires", methods=["GET"])
+    def rss_fires():
+        # Open RSS page and parse lxml
+        lxml = urlopen('https://inciweb.nwcg.gov/feeds/rss/incidents/')
+        soup = BeautifulSoup(lxml, 'lxml')
+        # Retrieve by tag
+        dirty_lats = soup.find_all('geo:lat')
+        dirty_lons = soup.find_all('geo:long')
+
+        # Clean the tags out
+        lats = []
+
+        for dirty_lat in dirty_lats:
+            exp = re.compile('[0-9]+.[0-9]+')
+            lats.append(float(re.findall(exp, str(dirty_lat))[0]))
+            
+
+        lons = []
+
+        for dirty_lon in dirty_lons:
+            exp = re.compile('[0-9]+.[0-9]+')
+            lons.append(float(re.findall(exp, str(dirty_lon))[0]))
+
+        # instantiate location list
+        location_list = []
+
+        # iterate
+        for i in range(len(lats)):
+            loc = (lats[i], lons[i])
+            
+            location_list.append(loc)
+
+        # Return
+        return jsonify(location_list)
 
     # run our app
     @app.route("/update", methods=["GET"])

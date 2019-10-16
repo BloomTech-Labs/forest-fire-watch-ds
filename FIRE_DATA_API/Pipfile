@@ -19,6 +19,8 @@ scikit-learn = "==0.20.3"
 datetime = "*"
 psycopg2-binary = "*"
 xgboost = "*"
+bs4 = "*"
+lxml = "*"
 
 [requires]
 python_version = "3.7"
