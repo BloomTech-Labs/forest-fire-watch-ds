@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ce7bcdf1bc175cd3dcaadeacc317be252a3aaa8974efa69af9c8f18a951c9aa8"
+            "sha256": "e5325c9d752b81f47987d2a866bd0fd7e358dd41dcc321e1b7454813cce7a44a"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -60,6 +60,10 @@
             ],
             "index": "pypi",
             "version": "==4.3"
+        },
+        "feedparser": {
+            "git": "https://github.com/ChanceDurr/feedparser",
+            "ref": "c0db42783b5c1ae4d16facfab1d2e19373fadfc1"
         },
         "flask": {
             "hashes": [

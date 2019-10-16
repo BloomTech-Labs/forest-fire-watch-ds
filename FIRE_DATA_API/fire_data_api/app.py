@@ -29,6 +29,7 @@ import os
 from bs4 import BeautifulSoup
 import re
 from urllib.request import urlopen
+import feedparser
 
 
 def create_app():
@@ -149,6 +150,16 @@ def create_app():
 
         # Return
         return jsonify(location_list)
+
+    # grab RSS fires using feedparser
+    @app.route("/fpfire", methods=["GET"])
+    def fires_json():
+        url = 'https://inciweb.nwcg.gov/feeds/rss/incidents/'
+        fires = feedparser.parse(url)
+        rss_fires = {}
+        for entry in fires.entries:
+            rss_fires[entry.title] = entry.where.coordinates
+        return jsonify(rss_fires)
 
     # run our app
     @app.route("/update", methods=["GET"])
