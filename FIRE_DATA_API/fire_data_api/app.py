@@ -6,10 +6,10 @@ an alert if there are active fires within that perimter.
 """
 
 # Flask App Imports
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, json
 from flask_restful import Api, reqparse
 from flask_cors import CORS
-from json import dumps
+
 
 
 # local imports
@@ -150,7 +150,7 @@ def create_app():
             location_list.append(loc)
 
         # Return
-        return jsonify(location_list)
+        return location_list
 
     # grab RSS fires using feedparser
     @app.route("/fpfire", methods=["GET"])
@@ -169,6 +169,38 @@ def create_app():
         make_predictions()
         time_now = datetime.datetime.now()
         return jsonify({"predictions run at": time_now})
+    
+    @app.route("/check_rss_fires", methods=["POST"])
+    def check_rss_fires(): # (lat, lon)
+        values = request.get_json()
+
+        # json type for post
+        # {
+        #     position: [lon, lat],
+        #     radius: int
+        # }
+
+        # Get args for Haversine
+        lat1, lon1 = values['position'][0], values['position'][1]
+        radius = values['radius']
+        
+        # Initialize nearby fires
+        nearby_fires = []
+        other_fires = []
+        
+        # get list of all fires
+        fires = rss_fires()
+
+        # iterate through fires
+        for fire in fires:
+            dist = haversine(lon1, lat1, fire[0], fire[1]) # haversine(lon1, lat1, lon2, lat2)
+            if dist <= radius:
+                nearby_fires.append(fire)
+            else:
+                other_fires.append(fire)
+        
+        return jsonify({'nearby_fires': nearby_fires, 'other_fires': other_fires})
+
 
     # see what model is running
     @app.route("/check", methods=["GET"])
