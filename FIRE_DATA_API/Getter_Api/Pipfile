@@ -7,6 +7,10 @@ verify_ssl = true
 pylint = "*"
 
 [packages]
+flask = "*"
+flask-restful = "*"
+flask-cors = "*"
+flask-sqlalchemy = "*"
 
 [requires]
 python_version = "3.6"

@@ -11,5 +11,5 @@ class Active_Fire(db.Model):
     timestamp = db.Column(db.DateTime, index=True)
 
     def __repr__(self):
-        return "<lat/long/fire/timestamp {},{}, {}, {}>".format(self.latitude, 
-        self.longitude, self.fire, self.timest
+        return "<lat/long/fire/timestamp {},{}, {}, {}>".format(self.latitude, self.longitude, 
+        self.fire, self.timest)
