@@ -2,7 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-class Active_Fire(db.Model): 
+class Modis(db.Model): 
     """ Modis Observation"""
     id = db.Column(db.Integer, primary_key=True)
     latitude = db.Column(db.VARCHAR(7))
@@ -31,7 +31,8 @@ class Weather_Curr(db.Model):
             self.latitude, self.longitude, self.timestamp self.wind_speed, self.wind_deg, 
             self.clouds, self.rain_1h, self.rain_3h, self.snow_1h, self.snow_3h ))
 
-
-
+class Firms(db.Model): 
+    def __repr__(self):
+        return("< {}>".format(self))
         
 
