@@ -13,7 +13,7 @@ from sklearn.pipeline import make_pipeline
 from sklearn.compose import make_column_transformer
 
 # database imports
-from .models import db, Fire, FrameHash
+from models import db, Fire, FrameHash
 
 # time conversion import
 import datetime, time

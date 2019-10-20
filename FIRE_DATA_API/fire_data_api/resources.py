@@ -4,8 +4,8 @@ API Resources.
 
 from flask import jsonify, request
 from flask_restful import Resource
-from .functions import check_fires
-from .models import db, Fire
+from functions import check_fires
+from models import db, Fire
 
 # time import
 import datetime

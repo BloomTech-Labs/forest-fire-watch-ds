@@ -13,9 +13,9 @@ from json import dumps
 
 
 # local imports
-from .models import db, Fire, FrameHash
-from .resources import CheckFires, AllFires
-from .datascience import (
+from models import db, Fire, FrameHash
+from resources import CheckFires, AllFires
+from datascience import (
     check_new_df,
     process_live_data,
     classify_fires,
@@ -37,6 +37,7 @@ def create_app():
     Creates and configures an instance of our Flask API
     """
     app = Flask(__name__)
+    app.run(debug=True)
     # create db first
 
     # configure database variables
