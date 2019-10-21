@@ -116,7 +116,7 @@ def create_app():
                 }
             )
 
-    # grab RSS fires
+    # grab all RSS fires
     @app.route("/rss_fires", methods=["GET"])
     def rss_fires():
         # Open RSS page and parse lxml
