@@ -33,6 +33,17 @@ from urllib.request import urlopen
 import feedparser
 
 
+def fires_list():
+    url = 'https://inciweb.nwcg.gov/feeds/rss/incidents/'
+    fires = feedparser.parse(url)
+    rss_fires = []
+    for entry in fires.entries:
+    # Return a dict for each fire with name and location
+        fire_dict = {'name': entry.title, 'location': entry.where.coordinates}
+        rss_fires.append(fire_dict)
+    return rss_fires
+
+
 def create_app():
     """
     Creates and configures an instance of our Flask API
@@ -155,13 +166,7 @@ def create_app():
     # grab RSS fires using feedparser
     @app.route("/fpfire", methods=["GET"])
     def fires_json():
-        url = 'https://inciweb.nwcg.gov/feeds/rss/incidents/'
-        fires = feedparser.parse(url)
-        rss_fires = []
-        for entry in fires.entries:
-        # Return a dict for each fire with name and location
-            fire_dict = {'name': entry.title, 'location': entry.where.coordinates}
-            rss_fires.append(fire_dict)
+        rss_fires = fires_list()
         return jsonify(rss_fires)
 
     # run our app
@@ -191,7 +196,7 @@ def create_app():
         other_fires = []
         
         # get list of all fires
-        fires = fires_json()
+        fires = fires_list()
 
         # iterate through fires
         for fire in fires:
