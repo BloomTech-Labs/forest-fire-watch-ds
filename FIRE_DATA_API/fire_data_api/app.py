@@ -157,9 +157,11 @@ def create_app():
     def fires_json():
         url = 'https://inciweb.nwcg.gov/feeds/rss/incidents/'
         fires = feedparser.parse(url)
-        rss_fires = {}
+        rss_fires = []
         for entry in fires.entries:
-            rss_fires[entry.title] = entry.where.coordinates
+        # Return a dict for each fire with name and location
+            fire_dict = {'name': entry.title, 'location': entry.where.coordinates}
+            rss_fires.append(fire_dict)
         return jsonify(rss_fires)
 
     # run our app
@@ -176,7 +178,7 @@ def create_app():
 
         # json type for post
         # {
-        #     position: [lon, lat],
+        #     position: [lat, lon],
         #     radius: int
         # }
 
@@ -189,11 +191,11 @@ def create_app():
         other_fires = []
         
         # get list of all fires
-        fires = rss_fires()
+        fires = fires_json()
 
         # iterate through fires
         for fire in fires:
-            dist = haversine(lon1, lat1, fire[0], fire[1]) # haversine(lon1, lat1, lon2, lat2)
+            dist = haversine(lon1, lat1, fire['location'][0], fire['location'][1]) # haversine(lon1, lat1, lon2, lat2)
             if dist <= radius:
                 nearby_fires.append(fire)
             else:
