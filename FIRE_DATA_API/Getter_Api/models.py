@@ -31,7 +31,7 @@ class Weather_Curr(db.Model):
             self.latitude, self.longitude, self.timestamp self.wind_speed, self.wind_deg, 
             self.clouds, self.rain_1h, self.rain_3h, self.snow_1h, self.snow_3h ))
 
-class Firms(db.Model): 
+class FIRMS(db.Model): 
     def __repr__(self):
         return("< {}>".format(self))
         
