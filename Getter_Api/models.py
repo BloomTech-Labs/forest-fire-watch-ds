@@ -5,16 +5,29 @@ db = SQLAlchemy()
 class Modis(db.Model): 
     """ Modis Observation"""
     id = db.Column(db.Integer, primary_key=True)
-    latitude = db.Column(db.VARCHAR(7))
-    longitude = db.Column(db.VARCHAR(7))
-    fire = db.Column(db.SmallInteger)
+    latitude = db.Column(db.Float)
+    longitude = db.Column(db.Float)
+    brightness = db.Column(db.Float)
+    scan = db.Column(db.Float)
+    track = db.Column(db.Float)
+    satellite = db.Column(db.VARCHAR(7))
+    confidence = db.Column(db.Integer)
+    version = db.Column(db.VARCHAR(7))
+    bright_t31 = db.Column(db.Float)
+    frp = db.Column(db.Float)
+    daynight = db.Column(db.VARCHAR(7))
     timestamp = db.Column(db.DateTime, index=True)
+    month = db.Column(db.Integer)
+    week = db.Column(db.Integer)
 
     def __repr__(self):
-        return "<lat/long/fire/timestamp {},{}, {}, {}>".format(self.latitude, self.longitude, 
+        return """<lat/long/brightness/scan/track/satellite/confidence/
+        version/bright_t31/frp/daynight/timestamp/month/week {}, {}, {}, 
+        {}, {}, {}, {}, {}, {}, {}, {}, {} 
+        {}, {}>""".format(self.latitude, self.longitude, 
         self.fire, self.timest)
 
-class Weather_Curr(db.Model):
+""" class Weather_Curr(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     latitude = db.Column(db.VARCHAR(7))
     longitude = db.Column(db.VARCHAR(7))
@@ -33,6 +46,4 @@ class Weather_Curr(db.Model):
 
 class FIRMS(db.Model): 
     def __repr__(self):
-        return("< {}>".format(self))
-        
-
+        return("< {}>".format(self)) """
