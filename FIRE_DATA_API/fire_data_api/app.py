@@ -11,11 +11,10 @@ from flask_restful import Api, reqparse
 from flask_cors import CORS
 
 
-
 # local imports
 from .models import db, Fire, FrameHash
 from .resources import CheckFires, AllFires
-from .functions import haversine
+from .functions import haversine, fires_list
 from .datascience import (
     check_new_df,
     process_live_data,
@@ -23,7 +22,6 @@ from .datascience import (
     add_fires,
     check_model
 )
-
 from apscheduler.schedulers.background import BackgroundScheduler
 import datetime
 import os
@@ -31,17 +29,6 @@ from bs4 import BeautifulSoup
 import re
 from urllib.request import urlopen
 import feedparser
-
-
-def fires_list():
-    url = 'https://inciweb.nwcg.gov/feeds/rss/incidents/'
-    fires = feedparser.parse(url)
-    rss_fires = []
-    for entry in fires.entries:
-    # Return a dict for each fire with name and location
-        fire_dict = {'name': entry.title, 'location': entry.where.coordinates}
-        rss_fires.append(fire_dict)
-    return rss_fires
 
 
 def create_app():
