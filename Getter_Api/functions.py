@@ -1,4 +1,3 @@
-
 # System Imports
 import os
 import requests
@@ -8,8 +7,80 @@ import json
 nasa_lance_token = 'C751EA24-F34E-11E9-9D0F-ABF3207B60E0'
 open_weather_token = ''
 
+# DB Imports
+from .models import Modis, db
+
+# DS Logic imports
+import pandas as pd
+import numpy as np
+from math import radians, cos, sin, asin, sqrt
+
 
 # Functions 
+
+# MODIS Functions
+def pull_modis():
+    """
+    Get latest modis data.
+    """
+    print("pulling modus - sleep for 1")
+    time.sleep(1)
+
+    url = "https://firms.modaps.eosdis.nasa.gov/data/active_fire/c6/csv/MODIS_C6_USA_contiguous_and_Hawaii_24h.csv"
+    df = pd.read_csv(url, sep=",")
+    print("got dataframe ", df.shape)
+    return df
+
+def process_live_data(original_df):
+    """
+    Pre processes live data to match pipeline expectations.
+    """
+    print("process_live_data!")
+    df = original_df.copy()
+    # process satellite labels
+    df["satellite"] = df["satellite"].replace({"T": "Terra", "A": "Aqua"})
+
+    # process time features
+    df["acq_time"] = (df["acq_time"] // 100) * 60 + (df["acq_time"] % 100)
+    df["timestamp"] = df.apply(
+        lambda x: datetime.datetime.strptime(x["acq_date"], "%Y-%m-%d")
+        + datetime.timedelta(minutes=x["acq_time"]),
+        axis=1,
+    )
+    df["month"] = df["timestamp"].dt.month
+    df["week"] = df["timestamp"].dt.weekofyear
+    df.drop(columns=["acq_date", "acq_time"], inplace=True)
+
+    return df
+
+def add_training_data(df, db):
+    print('adding training data')
+
+    # Add data from df into array
+    for row in df.values:
+        data = Modis(
+            latitude = row[0],
+            longitude = row[1],
+            brightness = row[2],
+            scan = row[3],
+            track = row[4],
+            satellite = row[5],
+            confidence = row[6],
+            version = row[7],
+            bright_t31 = row[8],
+            frp = row[9],
+            daynight = row[10],
+            timestamp = row[11],
+            month = row[12],
+            week = row[13]
+        )
+
+        # add to db
+        db.session.add(data)
+
+    # commit
+    db.session.commit()
+    
 
 def get_lon():
     pass
