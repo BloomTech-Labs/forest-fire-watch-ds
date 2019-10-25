@@ -8,6 +8,17 @@ import numpy as np
 from math import radians, cos, sin, asin, sqrt
 
 
+# Function to pull all fires
+def fires_list():
+    url = 'https://inciweb.nwcg.gov/feeds/rss/incidents/'
+    fires = feedparser.parse(url)
+    rss_fires = []
+    for entry in fires.entries:
+    # Return a dict for each fire with name and location
+        fire_dict = {'name': entry.title, 'location': entry.where.coordinates}
+        rss_fires.append(fire_dict)
+    return rss_fires
+
 def haversine(lon1, lat1, lon2, lat2):
     """
         Calculate the great circle distance between two points
