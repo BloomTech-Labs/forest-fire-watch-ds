@@ -3,6 +3,10 @@ import time
 import psycopg2
 import urllib.parse as up
 import datetime
+import os
+
+# Get the database url from environment variables
+db_url = os.environ.get('DB_URL')
 
 # Get the modis data
 df = get_modis_data()
@@ -18,7 +22,7 @@ populate_weather(df)
 
 # Connect to database and insert values
 up.uses_netloc.append('postgres')
-url = up.urlparse(config.db_url)
+url = up.urlparse(db_url)
 insert_time = datetime.datetime.now()
 for i in df.values:
   query = '''

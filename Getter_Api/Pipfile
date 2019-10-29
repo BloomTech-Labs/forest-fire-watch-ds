@@ -4,14 +4,18 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-pylint = "*"
 
 [packages]
 flask = "*"
 flask-restful = "*"
 flask-cors = "*"
-flask-sqlalchemy = "*"
 psycopg2-binary = "*"
+requests = "*"
+pandas = "*"
+geopy = "*"
+numpy = "*"
+scikit-learn = "*"
+shapely = "*"
 
 [requires]
-python_version = "3.8.0"
+python_version = "3.7"

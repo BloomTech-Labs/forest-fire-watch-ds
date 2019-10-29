@@ -2,24 +2,22 @@
 import os
 import requests
 import json 
+import time
 
 # API Tokens 
-nasa_lance_token = ''
-open_weather_token = ''
-
-# DB Imports
-from .models import Modis, db
+nasa_lance_token = os.environ.get('NASA_LANCE_TOKEN')
+open_weather_token = os.environ.get('WEATHER_KEY')
 
 # DS Logic imports
 import pandas as pd
 import numpy as np
 from math import radians, cos, sin, asin, sqrt
-import json
-import config
+from sklearn.cluster import DBSCAN
+from geopy.distance import great_circle
+from shapely.geometry import MultiPoint
 
 # Functions 
 
-# MODIS Functions
 def pull_modis():
     """
     Get latest modis data.
@@ -91,11 +89,11 @@ def get_lat():
 
 def get_firms():
     lance_firms_url = 'https://nrt4.modaps.eosdis.nasa.gov/api/v2/content/archives/FIRMS'
-    lance_firms_wget = f'wget -e robots=off -m -np -R .html,.tmp -nH --cut-dirs=4 "{lance_firms_url}" --header "Authorization: Bearer {config.nasa_lance_token}" -P ../../'
+    lance_firms_wget = f'wget -e robots=off -m -np -R .html,.tmp -nH --cut-dirs=4 "{lance_firms_url}" --header "Authorization: Bearer {nasa_lance_token}" -P ../../'
     return os.system(lance_firms_wget)
 
 def get_weather(lat, lon):
-    open_weather_url = f'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units={config.weather_key}'
+    open_weather_url = f'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&APPID={open_weather_token}'
     response = requests.get(open_weather_url)
     if response.status_code == 200:
         return json.loads(response.content.decode('utf-8'))
@@ -106,6 +104,12 @@ def get_modis_data():
     modis_url = "https://firms.modaps.eosdis.nasa.gov/data/active_fire/c6/csv/MODIS_C6_USA_contiguous_and_Hawaii_24h.csv"
     modis_data = pd.read_csv(modis_url)
     return modis_data
+
+# Getting the centermost point of a cluster
+def get_centermost_point(cluster):
+    centroid = (MultiPoint(cluster).centroid.x, MultiPoint(cluster).centroid.y)
+    centermost_point = min(cluster, key=lambda point: great_circle(point, centroid).m)
+    return tuple(centermost_point)
 
 # Reduces the number of points in the modis data frame
 def reduce_points(df, distance = 1.5):
