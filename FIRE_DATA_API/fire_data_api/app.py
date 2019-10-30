@@ -16,16 +16,8 @@ from flask_restful import Api, reqparse
 from flask_cors import CORS
 
 # local imports
-from .models import db, Fire, FrameHash # Do we need any of this? I don't think so?
-from .resources import CheckFires, AllFires # Don't think we need any of this either
 from .functions import fires_list, haversine, sort_fires
-from .datascience import (
-    check_new_df,
-    process_live_data,
-    classify_fires,
-    add_fires,
-    check_model
-)
+
 
 # Other imports
 import datetime
@@ -45,18 +37,6 @@ def create_app():
     Creates and configures an instance of our Flask API
     """
     app = Flask(__name__)
-    # create db first
-
-    # configure database variables
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-    app.config["ENV"] = os.environ.get(
-        "ENV"
-    )  # apparently this doesn't really work so commenting out for now
-    # Are we using any of this database shit?
-
-    app.app_context().push()
-    db.init_app(app)
 
     # enable CORS on all app routes
     CORS(app)
