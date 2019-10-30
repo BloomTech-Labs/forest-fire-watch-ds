@@ -1,0 +1,21 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+flask = "*"
+flask-restful = "*"
+flask-cors = "*"
+psycopg2-binary = "*"
+requests = "*"
+pandas = "*"
+geopy = "*"
+numpy = "*"
+scikit-learn = "*"
+shapely = "*"
+
+[requires]
+python_version = "3.7"
