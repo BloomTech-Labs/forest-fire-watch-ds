@@ -5,7 +5,8 @@ import json
 import time
 
 # API Tokens 
-nasa_lance_token = os.environ.get('NASA_LANCE_TOKEN')
+# Add api keys to Heroku config vars to access them
+# Using Openweather API
 open_weather_token = os.environ.get('WEATHER_KEY')
 
 # DS Logic imports
