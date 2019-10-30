@@ -37,7 +37,7 @@ def create_app():
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["ENV"] = os.environ.get(
         "ENV"
-    )  # apparently this doesn't really work so commenting out for now
+    )
 
     app.app_context().push()
     db.init_app(app)
@@ -106,20 +106,5 @@ def create_app():
 
 
     return app
-
-
-
-
-
-# from service import
-# @app.route('/')
-# def hello():
-#   return "Hello World!"
-
-# if __name__ == "__main__":
-#   Schema()
-#   app.run(debug=True)
-
-# @app.route("/todo", method=["POST"])
 
 
