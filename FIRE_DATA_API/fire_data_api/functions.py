@@ -1,12 +1,23 @@
 """
-Functions to check distance between users and fires.
+Functions to get fires from Inciweb and check distance between users and fires.
 """
+
+########################################################
+######################## Imports #######################
+########################################################
 
 # DS Logic imports
 import pandas as pd
 import numpy as np
 from math import radians, cos, sin, asin, sqrt
 
+# Other imports
+import feedparser
+
+
+#######################################################
+####################### Functions #####################
+#######################################################
 
 # Function to pull all fires
 def fires_list():
@@ -19,6 +30,7 @@ def fires_list():
         rss_fires.append(fire_dict)
     return rss_fires
 
+# Distance function
 def haversine(lon1, lat1, lon2, lat2):
     """
         Calculate the great circle distance between two points
@@ -36,32 +48,32 @@ def haversine(lon1, lat1, lon2, lat2):
     r = 3956  # radius of earth in miles mean of  poles and equator radius
     return c * r
 
+# Sort fires by distance - import the JSON from web
+def sort_fires(values):
 
-def check_fires(user_coords, perimiter, fire_coords):
-    """
-    checks a single user long/lat tuple against an array of long/lat fire coordinates
-    and returns a dict of fires within the perimiter and a binary Alert: yes/no
-    """
+    # json type for post:
+    # {
+    #     position: [lat, lon],
+    #     radius: int
+    # }
 
-    results = {"Alert": False, "Fires": []}
+    # Get args for Haversine
+    lat1, lon1 = values['position'][0], values['position'][1]
+    radius = values['radius']
 
-    # iterate through the fire coord pairs
-    for coord in fire_coords:
+    # Initialize fire lists
+    nearby_fires = []
+    other_fires = []
+        
+    # get list of all fires
+    fires = fires_list()
 
-        # compare user_coords with individual fires
-        distance = haversine(user_coords[0], user_coords[1], coord[0], coord[1])
-
-        # if this fire is on or within the user perimiter we set the alert flag and save the fire data
-        if distance <= perimiter:
-            results["Alert"] = True
-
-            fire_location_tuple = ((coord[0], coord[1]), distance)
-            # the fire location tuples will have the form
-
-            # list of ([long, lat], distance_to_user)
-            results["Fires"].append(fire_location_tuple)
-
+    # iterate through fires
+    for fire in fires:
+        dist = haversine(lon1, lat1, fire['location'][0], fire['location'][1]) # haversine(lon1, lat1, lon2, lat2)
+        if dist <= radius:
+            nearby_fires.append(fire)
         else:
-            pass
+            other_fires.append(fire)
 
-    return results
+    return nearby_fires, other_fires

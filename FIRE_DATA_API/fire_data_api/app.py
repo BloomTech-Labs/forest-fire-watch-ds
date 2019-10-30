@@ -1,20 +1,24 @@
 """
-Module to pull fire data from the MODUS project for use in Fire Flight.
+Heroku App to pull current fire alerts from Inciweb for use in Wildfire Watch App.
 
-User can send coordinates to API along with a perimiter value (in miles) and receive
-an alert if there are active fires within that perimter.
+User can send coordinates to API along with a radius value (in miles) and receive
+an alert if there are active fires within that radius.
 """
+
+
+#############################################
+################ Imports ####################
+#############################################
 
 # Flask App Imports
 from flask import Flask, jsonify, request, json
 from flask_restful import Api, reqparse
 from flask_cors import CORS
 
-
 # local imports
-from .models import db, Fire, FrameHash
-from .resources import CheckFires, AllFires
-from .functions import haversine, fires_list
+from .models import db, Fire, FrameHash # Do we need any of this? I don't think so?
+from .resources import CheckFires, AllFires # Don't think we need any of this either
+from .functions import fires_list, haversine, sort_fires
 from .datascience import (
     check_new_df,
     process_live_data,
@@ -22,7 +26,8 @@ from .datascience import (
     add_fires,
     check_model
 )
-from apscheduler.schedulers.background import BackgroundScheduler
+
+# Other imports
 import datetime
 import os
 from bs4 import BeautifulSoup
@@ -30,6 +35,10 @@ import re
 from urllib.request import urlopen
 import feedparser
 
+
+###########################################
+############# Create App ##################
+###########################################
 
 def create_app():
     """
@@ -44,6 +53,7 @@ def create_app():
     app.config["ENV"] = os.environ.get(
         "ENV"
     )  # apparently this doesn't really work so commenting out for now
+    # Are we using any of this database shit?
 
     app.app_context().push()
     db.init_app(app)
@@ -55,7 +65,35 @@ def create_app():
     api = Api(app)
     
 
-    # grab all RSS fires
+    ############################################################
+    ################### ENDPOINTS / ROUTES #####################
+    ############################################################
+
+    # grab RSS fires using feedparser (YOU NEED CHANCE'S VERSION)
+    @app.route("/fpfire", methods=["GET"])
+    def fires_json():
+        rss_fires = fires_list()
+        return jsonify(rss_fires)
+
+
+    # Return list of nearby_fires and other_fires
+    @app.route("/check_rss_fires", methods=["POST"])
+    def check_rss_fires(): # (lat, lon)
+        values = request.get_json()
+
+        # json type for post
+        # {
+        #     position: [lat, lon],
+        #     radius: int
+        # }
+
+        # Sort fires using sort_fires function
+        nearby_fires, other_fires = sort_fires(values)
+        
+        return jsonify({'nearby_fires': nearby_fires, 'other_fires': other_fires})
+
+
+    # grab RSS fires using BeautifulSoup (IF YOU DON'T HAVE CHANCE'S VERSION)
     @app.route("/rss_fires", methods=["GET"])
     def rss_fires():
         # Open RSS page and parse lxml
@@ -85,49 +123,11 @@ def create_app():
         # iterate
         for i in range(len(lats)):
             loc = (lats[i], lons[i])
-            
             location_list.append(loc)
 
         # Return
-        return location_list
+        return jsonify({'location': location_list})
 
 
-    # grab RSS fires using feedparser
-    @app.route("/fpfire", methods=["GET"])
-    def fires_json():
-        rss_fires = fires_list()
-        return jsonify(rss_fires)
-
-    
-    @app.route("/check_rss_fires", methods=["POST"])
-    def check_rss_fires(): # (lat, lon)
-        values = request.get_json()
-
-        # json type for post
-        # {
-        #     position: [lat, lon],
-        #     radius: int
-        # }
-
-        # Get args for Haversine
-        lat1, lon1 = values['position'][0], values['position'][1]
-        radius = values['radius']
-        
-        # Initialize nearby fires
-        nearby_fires = []
-        other_fires = []
-        
-        # get list of all fires
-        fires = fires_list()
-
-        # iterate through fires
-        for fire in fires:
-            dist = haversine(lon1, lat1, fire['location'][0], fire['location'][1]) # haversine(lon1, lat1, lon2, lat2)
-            if dist <= radius:
-                nearby_fires.append(fire)
-            else:
-                other_fires.append(fire)
-        
-        return jsonify({'nearby_fires': nearby_fires, 'other_fires': other_fires})
-
+    # Close up the create_app() function
     return app
