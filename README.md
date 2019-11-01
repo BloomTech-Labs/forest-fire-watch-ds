@@ -1,96 +1,107 @@
-# FireFlight
-You can find the project at [FireFlightApp.com](https://www.fireflightapp.com/).
+# Wildfire Watch (Lambda Labs 17)
+You can find the project at [WildfireWatchApp.com](https://www.wildfirewatchapp.com/).
 
 ## Contributors
+### (Left to Right)
 
-|                                       [Ned Horsey](https://github.com/Rice-from-data)                                        |                                       [Liv Johnson](https://github.com/livjab)                                        |                                       [](https://github.com/)                                        |
-| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://avatars1.githubusercontent.com/u/44828872?s=460&v=4" width = "200" />](https://github.com/Rice-from-data)                       |                      [<img src="https://avatars2.githubusercontent.com/u/23245487?s=460&v=4" width = "200" />](https://github.com/livjab)                       |                                             |                                             |                                             |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Rice-from-data)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/livjab)             |                         |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/edmond-horsey) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/liv-johnson-015523144/) |  |
+| **Chance Dare:** [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ChanceDurr) [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/chancedare) | **Eric Wuerfel:** [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/eWuerfel66) [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/eric-wuerfel-ab620313a/) |                                  **Ned Horsey:** [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Rice-from-data) [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/edmond-horsey) | **Liv Johnson:** [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/livjab) [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/liv-johnson-015523144/) |
 
+|                      [<img src="https://avatars2.githubusercontent.com/u/46852089?s=400&v=4" width = "200" />](https://github.com/ChanceDurr)                       |                      [<img src="https://avatars0.githubusercontent.com/u/37782589?s=400&v=4" width = "200" />](https://github.com/ewuerfel66)                       |                      [<img src="https://avatars1.githubusercontent.com/u/44828872?s=460&v=4" width = "200" />](https://github.com/Rice-from-data)                       |                      [<img src="https://avatars2.githubusercontent.com/u/23245487?s=460&v=4" width = "200" />](https://github.com/livjab)                       |
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 [![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](https://fireflight.netlify.com/)
 
 ## Project Overview
 
-[Trello Board](https://trello.com/b/LHd7GbuL/labs15-forest-fire)
+[Trello Board](https://trello.com/b/OVbzoexc/labs17-forest-fire-watch)
 
 [Product Canvas](https://www.notion.so/dd55f670427b40f7bc0503e36ad58ea9?v=d4cc255c2ad341a1b2ccd03f0d8d86f9)
 
 ### Problem
- - It's hard to be aware of wildfires in your area because all data is compiled for government use.
+
+ - It's hard to be aware of wildfires in your area because the data compiled for government use is confusing.
  - Local alerts for wildfires can fail in emergencies.
  - If you aren't generally aware of wildfire risk, you won't be ready in a disaster situation.
  
 ### Objectives
  
  - Provide an easy way to be aware of wildfires in your area.
- 
-[Deployed Front End](https://fireflight.netlify.com/)
 
 ### Tech Stack
 
-SQL, Python, Pandas, Scikit-learn, XGB, HDBSCAN, Flask
+SQL, Psycopg2, Python, Pandas, Flask, Feedparser
 
-### Classification Model
+### Data
 
-A model has been created using historic NASA satellite data, matched by date and location to known wildfires within the US. We are using this labled data in conjunction with NASA's current active fire data to correctly classify wildfires from live satellite image data. 
-
-### Explanatory Variables
-
+#### MODIS Data
 -   Brightness - Brightness temperature 21 (Kelvin) 
 -   Scan - Along Scan pixel size 
 -   Track - Along Scan pixel size
 -   Acq_Date - Acquisition Date 
 -   Acq_Time  - Acquisition Time 
--   Satellite -  	A = Aqua and T = Terra
+-   Satellite - A = Aqua and T = Terra
 -   Confidence - Confidence (0-100%) 
 -   Bright_T31 - Brightness temperature 31 (Kelvin) 
 -   FRP - Fire Radiative Power (MW - megawatts) 
 -   DayNight  - Day or Night 
 -   Clusters - Binary Y/N if pixel is part of a clutser
 
+#### Weather Data
+-   Temperature - (Fahrenheit)
+-   Wind Speed - (MPH)
+-   Wind Direction - (Degrees, Due North)
 
 ### Data Sources
 
+-   [Inciweb RSS Feed](https://inciweb.nwcg.gov/feeds/rss/incidents/)
+-   [MODIS Data](https://firms.modaps.eosdis.nasa.gov/data/active_fire/c6/csv/MODIS_C6_USA_contiguous_and_Hawaii_24h.csv)
+-   [Weather API](http://api.openweathermap.org/data/2.5/weather?)
+-   [Air Quality API](https://openaq.org/#/?_k=ww3pis)
 
+#### Data Sources not Used
 -   [US Wildfires](https://www.kaggle.com/rtatman/188-million-us-wildfires)
 -   [NASA Satellite FIRMS Data](https://firms.modaps.eosdis.nasa.gov/active_fire/#firms-txt)
 -   [MCD14DL](https://earthdata.nasa.gov/earth-observation-data/near-real-time/firms/c6-mcd14dl#ed-firms-attributes)
 -   [Federal Fire Occurrence Website](https://wildfire.cr.usgs.gov/firehistory)
 -   [NOAA GLOBAL HISTORICAL CLIMATOLOGY NETWORK](https://www.ncdc.noaa.gov/data-access/land-based-station-data/land-based-datasets/global-historical-climatology-network-monthly-version-4)
 
-### Python Notebooks
+### How to access our Current Fires API
+- Our Current Fires API is deployed at: https://wildfirewatch.herokuapp.com/
 
+#### /fpfire
+- Methods: ["GET"]
+- Returns: `[{'name': "Fire Name", 'location': [lat, lon]}, ...]`
 
-[Labelling Training Data and Exploration](https://github.com/labs15-forest-fire/Data-Science/blob/master/Labelling_Data/Labelling_Exploratory_Analysis_Training_Dataset.ipynb)
-
-[Baseline Model](https://github.com/labs15-forest-fire/Data-Science/blob/master/Baseline%20Model%20v2/DTC_Baseline_Model.ipynb)
-
-[Feature Engineering - Clustering](https://github.com/labs15-forest-fire/Data-Science/blob/master/Feature%20Engineering/Clustering/Binary_Clustering.ipynb)
-
-[Model Experiments and Tuning](https://github.com/labs15-forest-fire/Data-Science/blob/master/Fast%20Model%20Exploration%20v2/Model_Selection_Experiments_v2_clustering.ipynb)
-
-### How to connect to the web API
-
-- The data API is hosted at: [Fire Data Api](https://fire-data-api.herokuapp.com/)
-- To request a list of fires within your specified perimiter, POST  a json to https://fire-data-api.herokuapp.com/check_fires with the format: 
-
+#### /check_rss_fires
+- Methods: ["POST"]
+- Request JSON Format:
 ```
 {
-	"user_coords" : [LONG(float), LAT(float)],
-	"distance" : MILES(INT)
+	"position": [lat, lon],
+	"radius": int
 }
 ```
-The "distance" field determines the radius of your fire perimiter.
+- Returns: 
+```
+{
+	'nearby_fires': [{'name': "Fire Name", 'location': [lat, lon]}, ...],
+	'other_fires': [{'name': "Fire Name", 'location': [lat, lon]}, ...]
+}
+```
 
-- To request a list of ALL fires in the United States, send a GET request https://fire-data-api.herokuapp.com/all_fires 
+### How to connect to our Training Database
+- Our database is hosted on ElephantSQL.
+- Our training DB has all the features listed in the **Data** section above, and is labeled `1` for `fire`, `0` for `no fire`.
 
-[comment]: <> (# 3️⃣ How to connect to the data API)
-[comment]: <> ( 🚫 List directions on how to connect to the API here)
+Here are the public credentials:
+```
+# Credentials
+dbname = 'iagqhysc'
+user = 'iagqhysc'
+password = '*****'
+host = 'salt.db.elephantsql.com'
+```
+Please contact the creators for the password.
 
 ## Contributing
 
@@ -130,6 +141,6 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](https://github.com/labs15-forest-fire/backend) for details on the backend of our project.
+See [Backend Documentation](https://github.com/Lambda-School-Labs/forest-fire-watch-be) for details on the backend of our project.
 
-See [Front End Documentation](https://github.com/labs15-forest-fire/frontend) for details on the front end of our project.
+See [Front End Documentation](https://github.com/Lambda-School-Labs/forest-fire-watch-fe) for details on the front end of our project.
