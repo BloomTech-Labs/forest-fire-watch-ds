@@ -16,7 +16,7 @@ from flask_restful import Api, reqparse
 from flask_cors import CORS
 
 # local imports
-from .functions import fires_list, haversine, sort_fires
+from .functions import fires_list, haversine, sort_fires, fires_list_type
 
 
 # Other imports
@@ -53,6 +53,12 @@ def create_app():
     @app.route("/fpfire", methods=["GET"])
     def fires_json():
         rss_fires = fires_list()
+        return jsonify(rss_fires)
+
+
+    @app.route("/fpfiretype", methods=["GET"])
+    def firestype_json():
+        rss_fires = fires_list_type()
         return jsonify(rss_fires)
 
 

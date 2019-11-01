@@ -13,6 +13,7 @@ from math import radians, cos, sin, asin, sqrt
 
 # Other imports
 import feedparser
+import re
 
 
 #######################################################
@@ -27,6 +28,30 @@ def fires_list():
     for entry in fires.entries:
     # Return a dict for each fire with name and location
         fire_dict = {'name': entry.title, 'location': entry.where.coordinates}
+        rss_fires.append(fire_dict)
+    return rss_fires
+
+# Fires list with type 
+def fires_list_type():
+    url = 'https://inciweb.nwcg.gov/feeds/rss/incidents/'
+    fires = feedparser.parse(url)
+    rss_fires = []
+    for entry in fires.entries:
+    # Return a dict for each fire with name, location, and type
+        # Get the type of fire
+        if 'wildfire' in entry.title.lower():
+            fire_type = 'Wildfire'
+        elif 'prescribed' in entry.title.lower():
+            fire_type = 'Prescribed Fire'
+        elif 'burned area emergency response' in entry.title.lower():
+            fire_type = 'Burned Area Emergency Response'
+        else:
+            fire_type = 'NA'
+
+        name = re.sub("[\(\[].*?[\)\]]", "", entry.title).replace('Prescribed Fire', '').replace('Prescribed Burn', '').replace('BAER', '') # Remove from entry.title
+
+
+        fire_dict = {'name': name, 'location': entry.where.coordinates, 'type': fire_type}
         rss_fires.append(fire_dict)
     return rss_fires
 
