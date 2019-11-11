@@ -68,9 +68,9 @@ SQL, Psycopg2, Python, Pandas, Flask, Feedparser
 ### How to access our Current Fires API
 - Our Current Fires API is deployed at: https://wildfirewatch.herokuapp.com/
 
-#### /fpfire
+#### /fpfiretype
 - Methods: ["GET"]
-- Returns: `[{'name': "Fire Name", 'location': [lat, lon]}, ...]`
+- Returns: `[{'name': "Fire Name", 'type': "Wildfire", 'location': [lat, lon]}, ...]`
 
 #### /check_rss_fires
 - Methods: ["POST"]
