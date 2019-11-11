@@ -19,3 +19,6 @@ shapely = "*"
 
 [requires]
 python_version = "3.7"
+
+[packages.feedparser]
+git = "https://github.com/ChanceDurr/feedparser"
