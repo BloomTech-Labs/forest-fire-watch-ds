@@ -7,7 +7,7 @@ import pandas as pd
 # Credentials
 dbname = 'iagqhysc'
 user = 'iagqhysc'
-password = 'J7vVJWRxaedMniLaMt0vtUy7j0fdu09m' # Don't commit this!
+password = '' # Don't commit this!
 host = 'salt.db.elephantsql.com'
 
 # Establish connection
