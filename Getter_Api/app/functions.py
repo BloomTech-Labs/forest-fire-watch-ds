@@ -3,6 +3,7 @@ import os
 import requests
 import json 
 import time
+import datetime
 
 # API Tokens 
 # Add api keys to Heroku config vars to access them
@@ -16,8 +17,28 @@ from math import radians, cos, sin, asin, sqrt
 from sklearn.cluster import DBSCAN
 from geopy.distance import great_circle
 from shapely.geometry import MultiPoint
+import feedparser
 
 # Functions 
+
+# Distance function
+def haversine(lon1, lat1, lon2, lat2):
+    """
+        Calculate the great circle distance between two points
+        on the earth (specified in decimal degrees)
+        """
+
+    # convert decimal degrees to radians
+    lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
+
+    # haversine formula
+    dlon = lon2 - lon1
+    dlat = lat2 - lat1
+    a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2
+    c = 2 * asin(sqrt(a))
+    r = 3956  # radius of earth in miles mean of  poles and equator radius
+    return c * r
+
 def get_weather(lat, lon):
     open_weather_url = f'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&APPID={open_weather_token}'
     response = requests.get(open_weather_url)
@@ -30,6 +51,29 @@ def get_modis_data():
     modis_url = "https://firms.modaps.eosdis.nasa.gov/data/active_fire/c6/csv/MODIS_C6_USA_contiguous_and_Hawaii_24h.csv"
     modis_data = pd.read_csv(modis_url)
     return modis_data
+
+def process_live_data(original_df):
+    """
+    Pre processes live data to match pipeline expectations.
+    """
+    print("process_live_data!")
+    df = original_df.copy()
+    # process satellite labels
+    df["satellite"] = df["satellite"].replace({"T": "Terra", "A": "Aqua"})
+
+    # process time features
+    df["acq_time"] = (df["acq_time"] // 100) * 60 + (df["acq_time"] % 100)
+    df["timestamp"] = df.apply(
+        lambda x: datetime.datetime.strptime(x["acq_date"], "%Y-%m-%d")
+        + datetime.timedelta(minutes=x["acq_time"]),
+        axis=1,
+    )
+    # df['version'] = df['version'].apply(str)
+    df["month"] = df["timestamp"].dt.month
+    df["week"] = df["timestamp"].dt.weekofyear
+    df.drop(columns=["acq_date", "acq_time", "timestamp"], inplace=True)
+
+    return df
 
 # Getting the centermost point of a cluster
 def get_centermost_point(cluster):
@@ -120,3 +164,54 @@ def populate_weather(df):
         df['wind_direction'][i] = weather['wind']['deg']
   
   return 'Done'
+
+# Function to pull all fires
+def fires_list():
+    url = 'https://inciweb.nwcg.gov/feeds/rss/incidents/'
+    fires = feedparser.parse(url)
+    rss_fires = []
+    for entry in fires.entries:
+    # Return a dict for each fire with name and location
+        fire_dict = {'name': entry.title, 'location': entry.where.coordinates}
+        rss_fires.append(fire_dict)
+    return rss_fires
+
+# Label data
+def label_fires(df):
+    print('labelling data')
+    # Instantiate labels list
+    labels = []
+    
+    # Get lats and lons from df
+    lats = df['lat'].tolist()
+    lons = df['lon'].tolist()
+    
+    # Pull confirmed fires
+    fires = fires_list()
+    locations = [entry['location'] for entry in fires]
+    
+    # loop data points
+    for n in range(len(lats)):
+        # loop fires
+        for fire in locations:
+            distance = haversine(lons[n], lats[n], fire[1], fire[0])
+            label = 0
+            if distance < 0.3:
+                label = 1
+                labels.append(label)
+                break
+            else:
+                pass
+
+        if label != 1:
+            labels.append(label)
+            
+    # append labels to df
+    labelled_df = df.copy()
+    labelled_df['fire'] = labels
+    
+    return labelled_df
+
+def clean_df(df):
+    clean_df = df.fillna(0)
+    return clean_df

@@ -4,7 +4,7 @@ You can find the project at [WildfireWatchApp.com](https://www.wildfirewatchapp.
 ## Contributors
 ### (Left to Right)
 
-| **Chance Dare:** [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ChanceDurr) [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/chancedare) | **Eric Wuerfel:** [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/eWuerfel66) [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/eric-wuerfel-ab620313a/) |                                  **Ned Horsey:** [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Rice-from-data) [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/edmond-horsey) | **Liv Johnson:** [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/livjab) [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/liv-johnson-015523144/) |
+| **Chance Dare:** [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ChanceDurr) [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/chancedare) | **Eric Wuerfel:** [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/eWuerfel66) [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/eric-wuerfel/) |                                  **Ned Horsey:** [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Rice-from-data) [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/edmond-horsey) | **Liv Johnson:** [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/livjab) [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/liv-johnson-015523144/) |
 
 |                      [<img src="https://avatars2.githubusercontent.com/u/46852089?s=400&v=4" width = "200" />](https://github.com/ChanceDurr)                       |                      [<img src="https://avatars0.githubusercontent.com/u/37782589?s=400&v=4" width = "200" />](https://github.com/ewuerfel66)                       |                      [<img src="https://avatars1.githubusercontent.com/u/44828872?s=460&v=4" width = "200" />](https://github.com/Rice-from-data)                       |                      [<img src="https://avatars2.githubusercontent.com/u/23245487?s=460&v=4" width = "200" />](https://github.com/livjab)                       |
 
@@ -68,9 +68,9 @@ SQL, Psycopg2, Python, Pandas, Flask, Feedparser
 ### How to access our Current Fires API
 - Our Current Fires API is deployed at: https://wildfirewatch.herokuapp.com/
 
-#### /fpfire
+#### /fpfiretype
 - Methods: ["GET"]
-- Returns: `[{'name': "Fire Name", 'location': [lat, lon]}, ...]`
+- Returns: `[{'name': "Fire Name", 'type': "Wildfire", 'location': [lat, lon]}, ...]`
 
 #### /check_rss_fires
 - Methods: ["POST"]
