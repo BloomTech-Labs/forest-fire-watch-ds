@@ -23,5 +23,3 @@ def create_app():
         return 'Its up and possibly working'
 
     return app
-
-

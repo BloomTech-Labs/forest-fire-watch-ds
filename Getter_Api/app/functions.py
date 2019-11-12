@@ -20,25 +20,6 @@ from shapely.geometry import MultiPoint
 import feedparser
 
 # Functions 
-
-# Distance function
-def haversine(lon1, lat1, lon2, lat2):
-    """
-        Calculate the great circle distance between two points
-        on the earth (specified in decimal degrees)
-        """
-
-    # convert decimal degrees to radians
-    lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
-
-    # haversine formula
-    dlon = lon2 - lon1
-    dlat = lat2 - lat1
-    a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2
-    c = 2 * asin(sqrt(a))
-    r = 3956  # radius of earth in miles mean of  poles and equator radius
-    return c * r
-
 def get_weather(lat, lon):
     open_weather_url = f'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&APPID={open_weather_token}'
     response = requests.get(open_weather_url)
@@ -178,7 +159,7 @@ def fires_list():
 
 # Label data
 def label_fires(df):
-    print('labelling data')
+    print('labeling data...')
     # Instantiate labels list
     labels = []
     
@@ -192,9 +173,19 @@ def label_fires(df):
     
     # loop data points
     for n in range(len(lats)):
+
+        # Get position
+        lat = lats[n]
+        lon = lons[n]
+
         # loop fires
         for fire in locations:
-            distance = haversine(lons[n], lats[n], fire[1], fire[0])
+
+            # Get fire position
+            fire_lat = fire[1]
+            fire_lon = fire[0]
+
+            distance = great_circle((lat, lon), (fire_lat, fire_lon)).miles
             label = 0
             if distance < 0.3:
                 label = 1
