@@ -47,9 +47,22 @@ def fires_list_type():
             fire_type = 'Burned Area Emergency Response'
         else:
             fire_type = 'NA'
-
-        name = re.sub("[\(\[].*?[\)\]]", "", entry.title).replace('Prescribed Fire', '').replace('Prescribed Burn', '').replace('BAER', '') # Remove from entry.title
-
+        
+        # Clean up name
+        name = re.sub("[\(\[].*?[\)\]]", "", entry.title).replace('Prescribed Fire', '').replace(' - Prescribed Burn', '').replace('BAER', '') # Remove from entry.title
+        # Clean up BAER exceptions (MAY NEED TO ADD MORE LITTLE IF LOOPS TO THIS)
+        if ' -  ' in name.lower():
+            name = name.replace(' -  ', '')
+        if '  Info ' in name:
+            name = name.replace('  Info ', '')
+        if '2019' in name:
+            name = name.replace('2019', '')
+        if '  ' in name:
+            name = name.replace('  ', ' ')
+            
+        # Clean up ending whitespace
+        name = name.rstrip()
+        name = name.lstrip()
 
         fire_dict = {'name': name, 'location': entry.where.coordinates, 'type': fire_type}
         rss_fires.append(fire_dict)
