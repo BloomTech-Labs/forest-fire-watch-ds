@@ -6,6 +6,7 @@ For Heroku, we had two separate apps one that was used for the RSS feed endpoint
 ### Getting the main app setup
 - Create Heroku app
 - When deploying the main wildfirewatch app, do it from within `FIRE_DATA_API` folder
+
 ### Getting the Getter app setup (this one is more in-depth)
 1. Create the Heroku app
 2. Create your config variables:
@@ -23,7 +24,7 @@ For Heroku, we had two separate apps one that was used for the RSS feed endpoint
 	- Returns all of the fires from the RSS feed
 - `fires_list_type()`
 	- Returns all of the fires from the RSS feed with the type of fires seperate from the name
-- `haversine(lon1, lat1, lon2, lat2)`
+- `geopy.great_circle((lat0, lon0), (lat1, lon1)).miles`
 	- Returns the distance in miles between two sets of points
 - `sort_fires(values)`
 	-  Returns fires that are in range of values and also returns the one that are not. (Values = lat, lon, radius)
