@@ -18,8 +18,8 @@ You can find the project at [WildfireWatchApp.com](https://www.wildfirewatchapp.
 [Product Canvas](https://www.notion.so/dd55f670427b40f7bc0503e36ad58ea9?v=d4cc255c2ad341a1b2ccd03f0d8d86f9)
 
 **Our project is split into two parts:**
-	* FIRE_DATA_API
-	* Getter_Api
+- FIRE_DATA_API
+- Getter_Api
 
 ### Problem
 
