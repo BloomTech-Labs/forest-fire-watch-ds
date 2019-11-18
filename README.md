@@ -33,7 +33,7 @@ You can find the project at [WildfireWatchApp.com](https://www.wildfirewatchapp.
 
 ### Tech Stack
 
-Python, Flask, SQL, Psycopg2, Pandas, Feedparser
+Python, Flask, SQL, Psycopg2, Pandas, Feedparser (Custom version - check `FIRE_DATA_API/Pipfile` for details)
 
 ### Data
 
