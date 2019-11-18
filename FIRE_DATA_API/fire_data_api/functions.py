@@ -14,7 +14,7 @@ from math import radians, cos, sin, asin, sqrt
 # Other imports
 import feedparser
 import re
-
+from geopy.distance import great_circle
 
 #######################################################
 ####################### Functions #####################
@@ -47,44 +47,13 @@ def fires_list_type():
             fire_type = 'Burned Area Emergency Response'
         else:
             fire_type = 'NA'
-        
-        # Clean up name
-        name = re.sub("[\(\[].*?[\)\]]", "", entry.title).replace('Prescribed Fire', '').replace(' - Prescribed Burn', '').replace('BAER', '') # Remove from entry.title
-        # Clean up BAER exceptions (MAY NEED TO ADD MORE LITTLE IF LOOPS TO THIS)
-        if ' -  ' in name.lower():
-            name = name.replace(' -  ', '')
-        if '  Info ' in name:
-            name = name.replace('  Info ', '')
-        if '2019' in name:
-            name = name.replace('2019', '')
-        if '  ' in name:
-            name = name.replace('  ', ' ')
-            
-        # Clean up ending whitespace
-        name = name.rstrip()
-        name = name.lstrip()
+
+        name = re.sub("[\(\[].*?[\)\]]", "", entry.title).replace('Prescribed Fire', '').replace('Prescribed Burn', '').replace('BAER', '') # Remove from entry.title
+
 
         fire_dict = {'name': name, 'location': entry.where.coordinates, 'type': fire_type}
         rss_fires.append(fire_dict)
     return rss_fires
-
-# Distance function
-def haversine(lon1, lat1, lon2, lat2):
-    """
-        Calculate the great circle distance between two points
-        on the earth (specified in decimal degrees)
-        """
-
-    # convert decimal degrees to radians
-    lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
-
-    # haversine formula
-    dlon = lon2 - lon1
-    dlat = lat2 - lat1
-    a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2
-    c = 2 * asin(sqrt(a))
-    r = 3956  # radius of earth in miles mean of  poles and equator radius
-    return c * r
 
 # Sort fires by distance - import the JSON from web
 def sort_fires(values):
@@ -96,7 +65,7 @@ def sort_fires(values):
     # }
 
     # Get args for Haversine
-    lat1, lon1 = values['position'][0], values['position'][1]
+    position = (values['position'][0], values['position'][1])
     radius = values['radius']
 
     # Initialize fire lists
@@ -108,7 +77,8 @@ def sort_fires(values):
 
     # iterate through fires
     for fire in fires:
-        dist = haversine(lon1, lat1, fire['location'][0], fire['location'][1]) # haversine(lon1, lat1, lon2, lat2)
+        fire_position = (fire['location'][0], fire['location'][1])
+        dist = great_circle(position, fire_position).miles
         if dist <= radius:
             nearby_fires.append(fire)
         else:

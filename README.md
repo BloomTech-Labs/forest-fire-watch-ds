@@ -17,6 +17,10 @@ You can find the project at [WildfireWatchApp.com](https://www.wildfirewatchapp.
 
 [Product Canvas](https://www.notion.so/dd55f670427b40f7bc0503e36ad58ea9?v=d4cc255c2ad341a1b2ccd03f0d8d86f9)
 
+**Our project is split into two parts:**
+	* FIRE_DATA_API
+	* Getter_Api
+
 ### Problem
 
  - It's hard to be aware of wildfires in your area because the data compiled for government use is confusing.
@@ -29,7 +33,7 @@ You can find the project at [WildfireWatchApp.com](https://www.wildfirewatchapp.
 
 ### Tech Stack
 
-SQL, Psycopg2, Python, Pandas, Flask, Feedparser
+Python, Flask, SQL, Psycopg2, Pandas, Feedparser
 
 ### Data
 
@@ -46,6 +50,8 @@ SQL, Psycopg2, Python, Pandas, Flask, Feedparser
 -   DayNight  - Day or Night 
 -   Clusters - Binary Y/N if pixel is part of a clutser
 
+**MODIS Data is processed in our app to include ML-friendly time features**
+
 #### Weather Data
 -   Temperature - (Fahrenheit)
 -   Wind Speed - (MPH)
@@ -55,17 +61,19 @@ SQL, Psycopg2, Python, Pandas, Flask, Feedparser
 
 -   [Inciweb RSS Feed](https://inciweb.nwcg.gov/feeds/rss/incidents/)
 -   [MODIS Data](https://firms.modaps.eosdis.nasa.gov/data/active_fire/c6/csv/MODIS_C6_USA_contiguous_and_Hawaii_24h.csv)
+-   [US Wildfires](https://www.kaggle.com/rtatman/188-million-us-wildfires)
 -   [Weather API](http://api.openweathermap.org/data/2.5/weather?)
--   [Air Quality API](https://openaq.org/#/?_k=ww3pis)
+
+**[US Wildfires](https://www.kaggle.com/rtatman/188-million-us-wildfires) is the most useful for data analysis**
 
 #### Data Sources not Used
--   [US Wildfires](https://www.kaggle.com/rtatman/188-million-us-wildfires)
+-   [Air Quality API](https://openaq.org/#/?_k=ww3pis)
 -   [NASA Satellite FIRMS Data](https://firms.modaps.eosdis.nasa.gov/active_fire/#firms-txt)
 -   [MCD14DL](https://earthdata.nasa.gov/earth-observation-data/near-real-time/firms/c6-mcd14dl#ed-firms-attributes)
 -   [Federal Fire Occurrence Website](https://wildfire.cr.usgs.gov/firehistory)
 -   [NOAA GLOBAL HISTORICAL CLIMATOLOGY NETWORK](https://www.ncdc.noaa.gov/data-access/land-based-station-data/land-based-datasets/global-historical-climatology-network-monthly-version-4)
 
-### How to access our Current Fires API
+## FIRE_DATA_API
 - Our Current Fires API is deployed at: https://wildfirewatch.herokuapp.com/
 
 #### /fpfiretype
@@ -89,7 +97,7 @@ SQL, Psycopg2, Python, Pandas, Flask, Feedparser
 }
 ```
 
-### How to connect to our Training Database
+## Getter_Api (Training Data for ML)
 - Our database is hosted on ElephantSQL.
 - Our training DB has all the features listed in the **Data** section above, and is labeled `1` for `fire`, `0` for `no fire`.
 

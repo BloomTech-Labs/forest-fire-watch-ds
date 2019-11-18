@@ -16,7 +16,7 @@ from flask_restful import Api, reqparse
 from flask_cors import CORS
 
 # local imports
-from .functions import fires_list, haversine, sort_fires, fires_list_type
+from .functions import fires_list, sort_fires, fires_list_type
 
 
 # Other imports
