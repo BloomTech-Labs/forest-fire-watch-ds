@@ -16,7 +16,7 @@ from flask_restful import Api, reqparse
 from flask_cors import CORS
 
 # local imports
-from .functions import fires_list, haversine, sort_fires, fires_list_type
+from .functions import fires_list, haversine, sort_fires, fires_list_type,get_aqi_data
 
 
 # Other imports
@@ -114,6 +114,13 @@ def create_app():
         # Return
         return jsonify({'location': location_list})
 
+    #Get the Air Quality data from the nearest station for the given lat,long
+    @app.route("/get_aqi_data",methods=['POST'])
+    def aqi_data():
+        lat = request['lat']
+        lng = request['lng']
+        aqi_data = get_aqi_data(lat,lng)
+        return jsonify(aqi_data)
 
     # Close up the create_app() function
     return app

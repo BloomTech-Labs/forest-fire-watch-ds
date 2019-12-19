@@ -14,6 +14,7 @@ from math import radians, cos, sin, asin, sqrt
 # Other imports
 import feedparser
 import re
+import os
 
 
 #######################################################
@@ -102,3 +103,11 @@ def sort_fires(values):
             other_fires.append(fire)
 
     return nearby_fires, other_fires
+
+#Get the air quality data from waqi.info
+def get_aqi_data(latitude,longitude):
+    base_url = " https://api.waqi.info"
+    token = os.environ.get('WAQI_TOKEN')
+    
+
+    return aqi_data
