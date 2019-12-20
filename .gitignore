@@ -1,4 +1,5 @@
-/digital_elevation_data/
-/historical_fire_perimeters/
-/landsat_image_data/
-/modis_viirs_data/
+Additional_data_collection
+digital_elevation_data/
+historical_fire_perimeters/
+landsat_image_data/
+modis_viirs_data/
