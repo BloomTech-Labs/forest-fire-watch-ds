@@ -14,9 +14,10 @@ an alert if there are active fires within that radius.
 from flask import Flask, jsonify, request, json
 from flask_restful import Api, reqparse
 from flask_cors import CORS
+import requests
 
 # local imports
-from .functions import fires_list, haversine, sort_fires, fires_list_type,get_aqi_data
+from .functions import fires_list, haversine, sort_fires, fires_list_type,get_aqi_data,get_nearest_stations
 
 
 # Other imports
@@ -115,12 +116,20 @@ def create_app():
         return jsonify({'location': location_list})
 
     #Get the Air Quality data from the nearest station for the given lat,long
-    @app.route("/get_aqi_data",methods=['POST'])
-    def aqi_data():
-        lat = request['lat']
-        lng = request['lng']
+    @app.route("/get_aqi_data/<lat>/<lng>",methods=['GET'])
+    def aqi_data(lat,lng):
+        # print(request)
+        # lat = request.values['lat']
+        # lng = request.values['lng']
         aqi_data = get_aqi_data(lat,lng)
         return jsonify(aqi_data)
+
+    #Find the Latitude and longitude of nearest weather stations
+    @app.route("/get_aqi_stations/<lat>/<lng>/<distance>",methods=['GET'])
+    def aqi_stations(lat,lng,distance):
+        stations_data = get_nearest_stations(float(lat),float(lng),float(distance))
+        return jsonify(stations_data)
+
 
     # Close up the create_app() function
     return app
