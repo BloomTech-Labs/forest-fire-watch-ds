@@ -88,6 +88,44 @@ SQL, Psycopg2, Python, Pandas, Flask, Feedparser
 	'other_fires': [{'name': "Fire Name", 'location': [lat, lon]}, ...]
 }
 ```
+#### /get_aqi_data
+- Methods: ["GET"]
+- Request JSON Format:
+```
+{
+	"lat": latitude value,
+	"lng": longitude value
+}
+```
+- Returns: 
+```
+{  "co": {"v": value}, "no2": {"v": value}, "o3": {"v": value}, "p": {"v": value }, "pm10": {"v": value  }, 
+  	   "pm25": {"v": value}, "so2": {"v": value}, "t": {"v": value}, "w": {"v": value}
+}
+
+```
+
+#### /get_aqi_stations
+- Methods: ["GET"]
+- Request JSON Format:
+```
+{
+	"lat": latitude value,
+	"lng": longitude value.
+	"distance": distance value
+}
+```
+- Returns: 
+```
+{
+  "data": [ { "aqi": "-", "lat": value, "lon": value, 
+      "station": {"name": value, "time": value  }, 
+      "uid": value
+    }], 
+  "status": "ok"
+}
+
+```
 
 ### How to connect to our Training Database
 - Our database is hosted on ElephantSQL.
