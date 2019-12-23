@@ -116,19 +116,26 @@ def create_app():
         return jsonify({'location': location_list})
 
     #Get the Air Quality data from the nearest station for the given lat,long
-    @app.route("/get_aqi_data/<lat>/<lng>",methods=['GET'])
-    def aqi_data(lat,lng):
+    @app.route("/get_aqi_data",methods=['GET'])
+    def aqi_data():
         # print(request)
-        # lat = request.values['lat']
-        # lng = request.values['lng']
+        lat = request.args.get('lat')
+        lng = request.args.get('lng')
         aqi_data = get_aqi_data(lat,lng)
         return jsonify(aqi_data)
 
     #Find the Latitude and longitude of nearest weather stations
-    @app.route("/get_aqi_stations/<lat>/<lng>/<distance>",methods=['GET'])
-    def aqi_stations(lat,lng,distance):
-        stations_data = get_nearest_stations(float(lat),float(lng),float(distance))
-        return jsonify(stations_data)
+    @app.route("/get_aqi_stations",methods=['GET'])
+    def aqi_stations():
+        lat = request.args.get('lat')
+        lng = request.args.get('lng')
+        distance = request.args.get('distance')
+        #Convert the parameters into float for further operations
+        try:
+            stations_data = get_nearest_stations(float(lat),float(lng),float(distance))
+            return jsonify(stations_data)
+        except:
+            return "error:bad parameters"
 
 
     # Close up the create_app() function

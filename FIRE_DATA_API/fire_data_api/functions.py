@@ -112,12 +112,12 @@ def get_aqi_data(latitude,longitude):
     base_url = " https://api.waqi.info/feed/geo"
     api_url = f'{base_url}:{latitude};{longitude}/?token={TOKEN}'
     response = requests.get(api_url)
-    if(response.status_code==200):
+    recd_data = response.json()
+    if(recd_data['status']=='ok'):
         #Retrieving only the air quality data
-        recd_data = response.json()
         aq_data = recd_data['data']['iaqi']
     else:
-        aq_data = {}
+        aq_data = recd_data['data']
 
     return aq_data
 
@@ -130,11 +130,8 @@ def get_nearest_stations(latitude,longitude,distance):
     lng_min = longitude - distance
     lng_max = longitude + distance
     api_url = f'{base_url}{lat_min},{lng_min},{lat_max},{lng_max}&token={TOKEN}'
-    print(api_url)
     response = requests.get(api_url)
-    if(response.status_code==200):
-        #Retrieving only the air quality data
-        stations_data = response.json()
-    else:
-        stations_data = {}
+    stations_data = response.json()
+    
     return stations_data
+    
