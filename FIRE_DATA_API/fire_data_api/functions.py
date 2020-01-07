@@ -14,7 +14,11 @@ from math import radians, cos, sin, asin, sqrt
 # Other imports
 import feedparser
 import re
+import os
+import requests
 
+#Api token to be used for getting api data from waqi.info
+TOKEN = os.environ.get('WAQI_TOKEN')
 
 #######################################################
 ####################### Functions #####################
@@ -102,3 +106,36 @@ def sort_fires(values):
             other_fires.append(fire)
 
     return nearby_fires, other_fires
+
+#Get the air quality data from waqi.info
+def get_aqi_data(latitude,longitude):
+    base_url = " https://api.waqi.info/feed/geo"
+    api_url = f'{base_url}:{latitude};{longitude}/?token={TOKEN}'
+    response = requests.get(api_url)
+    recd_data = response.json()
+    if(recd_data['status']=='ok'):
+        #get air quality index
+        aqi = recd_data['data']['aqi']
+        #get the air quality parameters data
+        aq_data = recd_data['data']['iaqi']
+        #Adding the AQI to the parameters data
+        aq_data['aqi']= aqi
+    else:
+        aq_data = recd_data['data']
+
+    return aq_data
+
+#Find the co-ordinates of nearest weather stations
+def get_nearest_stations(latitude,longitude,distance):
+    base_url = " https://api.waqi.info/map/bounds/?latlng="
+    #Getting the bounding box for given co-ordinates
+    lat_min = latitude - distance
+    lat_max = latitude + distance
+    lng_min = longitude - distance
+    lng_max = longitude + distance
+    api_url = f'{base_url}{lat_min},{lng_min},{lat_max},{lng_max}&token={TOKEN}'
+    response = requests.get(api_url)
+    stations_data = response.json()
+    
+    return stations_data
+    

@@ -14,9 +14,11 @@ an alert if there are active fires within that radius.
 from flask import Flask, jsonify, request, json
 from flask_restful import Api, reqparse
 from flask_cors import CORS
+import requests
 
 # local imports
 from .functions import fires_list, haversine, sort_fires, fires_list_type
+from .functions import get_aqi_data,get_nearest_stations
 
 
 # Other imports
@@ -113,6 +115,28 @@ def create_app():
 
         # Return
         return jsonify({'location': location_list})
+
+    #Get the Air Quality data from the nearest station for the given lat,long
+    @app.route("/get_aqi_data",methods=['GET'])
+    def aqi_data():
+        # print(request)
+        lat = request.args.get('lat')
+        lng = request.args.get('lng')
+        aqi_data = get_aqi_data(lat,lng)
+        return jsonify(aqi_data)
+
+    #Find the Latitude and longitude of nearest weather stations
+    @app.route("/get_aqi_stations",methods=['GET'])
+    def aqi_stations():
+        lat = request.args.get('lat')
+        lng = request.args.get('lng')
+        distance = request.args.get('distance')
+        #Convert the parameters into float for further operations
+        try:
+            stations_data = get_nearest_stations(float(lat),float(lng),float(distance))
+            return jsonify(stations_data)
+        except:
+            return "error:bad parameters"
 
 
     # Close up the create_app() function
