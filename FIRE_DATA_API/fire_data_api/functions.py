@@ -114,8 +114,12 @@ def get_aqi_data(latitude,longitude):
     response = requests.get(api_url)
     recd_data = response.json()
     if(recd_data['status']=='ok'):
-        #Retrieving only the air quality data
+        #get air quality index
+        aqi = recd_data['data']['aqi']
+        #get the air quality parameters data
         aq_data = recd_data['data']['iaqi']
+        #Adding the AQI to the parameters data
+        aq_data['aqi']= aqi
     else:
         aq_data = recd_data['data']
 

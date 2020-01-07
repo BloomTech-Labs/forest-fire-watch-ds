@@ -17,7 +17,8 @@ from flask_cors import CORS
 import requests
 
 # local imports
-from .functions import fires_list, haversine, sort_fires, fires_list_type,get_aqi_data,get_nearest_stations
+from .functions import fires_list, haversine, sort_fires, fires_list_type
+from .functions import get_aqi_data,get_nearest_stations
 
 
 # Other imports
