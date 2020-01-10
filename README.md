@@ -3,10 +3,12 @@ You can find the project at [WildfireWatchApp.com](https://www.wildfirewatchapp.
 
 ## Contributors
 ### (Left to Right)
-
-| **Chance Dare:** [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ChanceDurr) [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/chancedare) | **Eric Wuerfel:** [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/eWuerfel66) [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/eric-wuerfel/) |                                  **Ned Horsey:** [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Rice-from-data) [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/edmond-horsey) | **Liv Johnson:** [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/livjab) [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/liv-johnson-015523144/) |
+ 
+| **Chance Dare:** [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ChanceDurr) [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/chancedare) | **Eric Wuerfel:** [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/eWuerfel66) [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/eric-wuerfel/) |                                  **Ned Horsey:** [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Rice-from-data) [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/edmond-horsey) | **Liv Johnson:** [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/livjab) [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/liv-johnson-015523144/) | **Oscar Calzada:** [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ocalzada) [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://linkedin.com/in/oscar-calzada-b34b8b53)|          
+**Vishnu Yarmaneni:** [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/vishnuyar) [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://linkedin.com/in/vishnuvyarmaneni)
 
 |                      [<img src="https://avatars2.githubusercontent.com/u/46852089?s=400&v=4" width = "200" />](https://github.com/ChanceDurr)                       |                      [<img src="https://avatars0.githubusercontent.com/u/37782589?s=400&v=4" width = "200" />](https://github.com/ewuerfel66)                       |                      [<img src="https://avatars1.githubusercontent.com/u/44828872?s=460&v=4" width = "200" />](https://github.com/Rice-from-data)                       |                      [<img src="https://avatars2.githubusercontent.com/u/23245487?s=460&v=4" width = "200" />](https://github.com/livjab)                       |
+[<img src="https://avatars1.githubusercontent.com/u/53792042?s=460&v=4" width = "200" />](https://github.com/ocalzada)                       |[<img src="https://avatars3.githubusercontent.com/u/3436873?s=460&v=4" width = "200" />](https://github.com/vishnuyar)                       |
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 [![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
@@ -57,6 +59,7 @@ SQL, Psycopg2, Python, Pandas, Flask, Feedparser
 -   [MODIS Data](https://firms.modaps.eosdis.nasa.gov/data/active_fire/c6/csv/MODIS_C6_USA_contiguous_and_Hawaii_24h.csv)
 -   [Weather API](http://api.openweathermap.org/data/2.5/weather?)
 -   [Air Quality API](https://openaq.org/#/?_k=ww3pis)
+-   [API World's Air Pollution: Real-time Air Quality Index](https://waqi.info/)
 
 #### Data Sources not Used
 -   [US Wildfires](https://www.kaggle.com/rtatman/188-million-us-wildfires)
@@ -99,7 +102,7 @@ SQL, Psycopg2, Python, Pandas, Flask, Feedparser
 ```
 - Returns: 
 ```
-{  "co": {"v": value}, "no2": {"v": value}, "o3": {"v": value}, "p": {"v": value }, "pm10": {"v": value  }, 
+{  "aqi": value, co": {"v": value}, "no2": {"v": value}, "o3": {"v": value}, "p": {"v": value }, "pm10": {"v": value  }, 
   	   "pm25": {"v": value}, "so2": {"v": value}, "t": {"v": value}, "w": {"v": value}
 }
 
